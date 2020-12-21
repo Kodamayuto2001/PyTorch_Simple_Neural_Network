@@ -146,6 +146,6 @@ class AI_30Classes:
 
 if __name__ == "__main__":
     ai_30classes    =   AI_30Classes(
-        root_train_dir="../SimpleNeuralNetwork_30_Classes/train/",
-        root_test_dir="../SimpleNeuralNetwork_30_Classes/test/"
+        root_train_dir="train/",
+        root_test_dir="test/"
     )
