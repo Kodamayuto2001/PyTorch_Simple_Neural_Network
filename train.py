@@ -32,9 +32,9 @@ class AI:
         model_num   =   20,
         TRAIN_DIR   =   "train-dataset",
         # TEST_DIR    =   "test-dataset",
-        PT_NAME     =   "nn.pt",
-        LOSS_PNG    =   "loss.png",
-        ACC_PNG     =   "acc.png"
+        PT_NAME     =   "nn1.pt",
+        LOSS_PNG    =   "loss1.png",
+        ACC_PNG     =   "acc1.png"
         ):
         self.EPOCH      =   EPOCH
         self.IMAGE_SIZE =   IMAGE_SIZE
@@ -111,11 +111,14 @@ class AI:
     
     def save_acc_png(self,acc,name):
         plt.figure()
-        plt.plot(range(1,self.EPOCH+1),acc,label=label)
+        plt.plot(range(1,self.EPOCH+1),acc,label=str(name))
         plt.xlabel('epoch')
         plt.ylabel('accuracy')
         plt.legend()
         plt.savefig(str(name)+"_"+self.ACC_PNG)
+
+    def save_model(self):
+        torch.save(self.MODEL.state_dict(),self.PT_NAME)
 
 class AI_30Classes:
     def __init__(self,root_train_dir,root_test_dir):
@@ -142,6 +145,9 @@ class AI_30Classes:
         for x in denjyo_classes:
             # print(x)
             ai.save_acc_png(x[2],x[0]) 
+
+        #   モデルの保存
+        ai.save_model()
 
 
 if __name__ == "__main__":
